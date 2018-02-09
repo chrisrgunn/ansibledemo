@@ -1,3 +1,7 @@
 [webserver]
 
+ubuntu@54.183.247.223 ansible_ssh_private_key_file=/Users/chris/.ssh/chris.pem
+
+[webserver2]
+
 ec2-user@52.52.248.119 ansible_ssh_private_key_file=/Users/chris/.ssh/chris.pem 

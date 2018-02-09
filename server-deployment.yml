@@ -1,12 +1,37 @@
 ---
 - hosts: webserver
-  
-  user: ec2-user
   sudo: yes
+  remote_user: ubuntu
+  gather_facts: no
+
+  vars:
+    - MyMessage: "Hello World! ***New depoloyment"
+
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python-simplejson
+    # - name: 'updates'
+    #   raw: sudo apt-get update
+
+
 
   tasks:
-    - name: Update all packages to latest
-      yum: name=* state=latest
-
+    # - name: update all packages
+    #   become: true
+    #   apt:
+    #     upgrade: yes
+    #     update_cache: yes
+    #     cache_valid_time: 86400
+    # - service:
+    #   name: nginx
+    #   state: restart     
+    - name: 'updates'
+      raw: sudo apt-get update
     - name: Nginx setup
-      yum: pkg=nginx state=installed update_cache=true
+      become: yes
+      apt: pkg=nginx state=installed update_cache=true
+    - name: index.html copy
+      template: src=index.html.j2 dest=/usr/share/nginx/html/index.html
+    # - service:
+    #   name: apache2
+    #   state: started

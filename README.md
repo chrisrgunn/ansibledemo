@@ -1,1 +1,3 @@
-# ansibledemo
+# Ansible Demo
+
+Ansible is used in this demo to SSH into our remote AWS EC2 instance to run automated tasks for webserver deployment through an Ansible playbook. The EC2 webserver is brought up on port 80 via HTTP. Our playbook first runs the pre-task of installing python2, needed by Ansible. Then, our playbook runs the tasks of updating all packages, installing/running Nginx, and copying our index.html.j2 file located on our client machine over to our web server. This completes our deployment and allows us to see our new hoemepage with "Hello World!" text on port 80 by visiting our EC2 URL. To demonstrate un-deployment, first make a new change to the homepage text and then deploy our original playbook which reverts the text back.
