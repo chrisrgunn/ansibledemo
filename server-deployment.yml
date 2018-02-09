@@ -1,0 +1,12 @@
+---
+- hosts: webserver
+  
+  user: ec2-user
+  sudo: yes
+
+  tasks:
+    - name: Update all packages to latest
+      yum: name=* state=latest
+
+    - name: Nginx setup
+      yum: pkg=nginx state=installed update_cache=true
